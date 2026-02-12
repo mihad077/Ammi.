@@ -73,6 +73,7 @@
       justify-content: center;
       height: 100vh;
       width: 100%;
+      position: relative;
     }
 
     /* Fullscreen photo */
@@ -93,6 +94,7 @@
       font-size: 1.1rem;
       text-shadow: 2px 2px 10px black;
       padding: 0 15px;
+      max-width: 90%;
     }
 
     /* Hug GIF center */
@@ -100,12 +102,19 @@
       width: 180px;
       margin-top: 50px;
       border-radius: 20px;
-      box-shadow: 0px 0px 20px pink;
+
+      /* ✅ Transparent Fix */
+      background: transparent !important;
+      mix-blend-mode: multiply;
     }
 
-    /* NO screen crying gif */
+    /* NO screen */
+    #noBox {
+      background: black;
+    }
+
     #noBox img {
-      width: 220px;
+      width: 250px;
       border-radius: 20px;
       box-shadow: 0px 0px 20px red;
     }
@@ -133,10 +142,12 @@
 
   <!-- YES Result -->
   <div id="resultBox">
+
     <!-- Fullscreen Photo -->
     <img src="photo.jpg.jpg" class="photo" alt="My Love Photo">
 
     <!-- Hug GIF Center -->
+    <!-- ✅ FIXED NAME: love.gif.GIF -->
     <img id="hugGif" src="love.gif.gif" alt="Hug Gif">
 
     <!-- Bottom Text -->
@@ -149,6 +160,8 @@
   <!-- NO Result -->
   <div id="noBox">
     <h2>Oh no 😭💔</h2>
+
+    <!-- ✅ FIXED NAME -->
     <img src="cry.gif.GIF" alt="Crying Gif">
   </div>
 
