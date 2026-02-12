@@ -2,134 +2,119 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ammi 💘 Valentine</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ammi 💖 Valentine</title>
 
   <style>
     body {
       margin: 0;
       height: 100vh;
+      overflow: hidden;
+      font-family: Arial, sans-serif;
+
+      /* ✅ Background GIF */
+      background: url("https://media.tenor.com/2roX3uxz_68AAAAC/cute-love.gif") no-repeat center center/cover;
+
       display: flex;
       justify-content: center;
       align-items: center;
-      font-family: Arial, sans-serif;
-      text-align: center;
-      overflow: hidden;
-    }
-
-    body::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: url("https://media.tenor.com/2roX3uxz_68AAAAC/love-hearts.gif")
-        no-repeat center center/cover;
-      filter: brightness(0.7);
-      z-index: -1;
-    }
-
-    .card {
-      background: rgba(255, 255, 255, 0.9);
-      padding: 40px;
-      border-radius: 25px;
-      max-width: 380px;
+      flex-direction: column;
     }
 
     h1 {
-      color: #ff2e88;
+      color: hotpink;
+      font-size: 2.2rem;
+      text-align: center;
+      text-shadow: 2px 2px 10px black;
+      margin-bottom: 30px;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 20px;
     }
 
     button {
-      font-size: 18px;
+      font-size: 20px;
       padding: 12px 25px;
-      margin: 12px;
       border: none;
       border-radius: 15px;
       cursor: pointer;
+      transition: 0.2s;
     }
 
     #yesBtn {
-      background: #ff2e88;
+      background: deeppink;
       color: white;
     }
 
     #noBtn {
       background: white;
-      position: relative;
+      color: black;
+      position: absolute;
     }
 
-    #message {
+    /* ✅ Hidden Love Message */
+    #loveBox {
       display: none;
+      text-align: center;
+    }
+
+    #loveBox img {
+      width: 250px;
+      border-radius: 20px;
       margin-top: 20px;
-      font-size: 18px;
-      color: #ff2e88;
-      font-weight: bold;
     }
 
-    #yesGif {
-      width: 200px;
-      display: none;
-      margin-top: 15px;
-      border-radius: 15px;
-    }
-
-    #noGif {
-      width: 180px;
-      display: none;
-      margin-top: 15px;
-      border-radius: 15px;
+    #loveText {
+      font-size: 2rem;
+      color: white;
+      text-shadow: 2px 2px 10px black;
     }
   </style>
 </head>
 
 <body>
-  <div class="card">
-    <h1>Ammi, will you be my Valentine? 💖</h1>
 
-    <button id="yesBtn">Yes 🥰</button>
-    <button id="noBtn">No 😭</button>
+  <!-- Question -->
+  <div id="mainBox">
+    <h1>Ammi 🥺💖 Will you be my Valentine?</h1>
 
-    <img
-      id="yesGif"
-      src="https://media.tenor.com/7zK8p7b7T9kAAAAC/love-you-kiss.gif"
-      alt="Love Gif"
-    />
-
-    <img
-      id="noGif"
-      src="https://media.tenor.com/8iE3zvZpKqUAAAAC/sad-cat.gif"
-      alt="Sad Gif"
-    />
-
-    <div id="message">
-      I love you more than anything, Ammi 💍💖 <br />
-      Will you be my Valentine, babe? 😘
+    <div class="buttons">
+      <button id="yesBtn" onclick="yesClicked()">Yes 🥰</button>
+      <button id="noBtn" onmouseover="moveNo()">No 😭</button>
     </div>
   </div>
 
+  <!-- Yes Result -->
+  <div id="loveBox">
+    <div id="loveText">
+      I love you more than anything Ammi 💍💖<br>
+      Happy Valentine’s Day 😘
+    </div>
+
+    <!-- ✅ GIF after Yes -->
+    <img src="https://media.tenor.com/0AVbKGY_MxMAAAAC/cute-kiss.gif" />
+  </div>
+
   <script>
-    const yesBtn = document.getElementById("yesBtn");
-    const noBtn = document.getElementById("noBtn");
+    // ✅ YES Click Function
+    function yesClicked() {
+      document.getElementById("mainBox").style.display = "none";
+      document.getElementById("loveBox").style.display = "block";
+    }
 
-    const message = document.getElementById("message");
-    const yesGif = document.getElementById("yesGif");
-    const noGif = document.getElementById("noGif");
+    // ✅ NO Button Running Away
+    function moveNo() {
+      let noBtn = document.getElementById("noBtn");
 
-    yesBtn.addEventListener("click", () => {
-      message.style.display = "block";
-      yesGif.style.display = "block";
-    });
+      let x = Math.random() * (window.innerWidth - 100);
+      let y = Math.random() * (window.innerHeight - 50);
 
-    noBtn.addEventListener("touchstart", moveButton);
-    noBtn.addEventListener("mouseover", moveButton);
-
-    function moveButton() {
-      noGif.style.display = "block";
-
-      const x = Math.floor(Math.random() * 250) - 120;
-      const y = Math.floor(Math.random() * 250) - 120;
-
-      noBtn.style.transform = `translate(${x}px, ${y}px)`;
+      noBtn.style.left = x + "px";
+      noBtn.style.top = y + "px";
     }
   </script>
+
 </body>
 </html>
