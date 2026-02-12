@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ammi 💘 Valentine</title>
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: url("https://media.tenor.com/2roX3uxz_68AAAAC/love-hearts.gif")
+        no-repeat center center/cover;
+      filter: brightness(0.7);
+      z-index: -1;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.9);
+      padding: 40px;
+      border-radius: 25px;
+      max-width: 380px;
+    }
+
+    h1 {
+      color: #ff2e88;
+    }
+
+    button {
+      font-size: 18px;
+      padding: 12px 25px;
+      margin: 12px;
+      border: none;
+      border-radius: 15px;
+      cursor: pointer;
+    }
+
+    #yesBtn {
+      background: #ff2e88;
+      color: white;
+    }
+
+    #noBtn {
+      background: white;
+      position: relative;
+    }
+
+    #message {
+      display: none;
+      margin-top: 20px;
+      font-size: 18px;
+      color: #ff2e88;
+      font-weight: bold;
+    }
+
+    #yesGif {
+      width: 200px;
+      display: none;
+      margin-top: 15px;
+      border-radius: 15px;
+    }
+
+    #noGif {
+      width: 180px;
+      display: none;
+      margin-top: 15px;
+      border-radius: 15px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="card">
+    <h1>Ammi, will you be my Valentine? 💖</h1>
+
+    <button id="yesBtn">Yes 🥰</button>
+    <button id="noBtn">No 😭</button>
+
+    <img
+      id="yesGif"
+      src="https://media.tenor.com/7zK8p7b7T9kAAAAC/love-you-kiss.gif"
+      alt="Love Gif"
+    />
+
+    <img
+      id="noGif"
+      src="https://media.tenor.com/8iE3zvZpKqUAAAAC/sad-cat.gif"
+      alt="Sad Gif"
+    />
+
+    <div id="message">
+      I love you more than anything, Ammi 💍💖 <br />
+      Will you be my Valentine, babe? 😘
+    </div>
+  </div>
+
+  <script>
+    const yesBtn = document.getElementById("yesBtn");
+    const noBtn = document.getElementById("noBtn");
+
+    const message = document.getElementById("message");
+    const yesGif = document.getElementById("yesGif");
+    const noGif = document.getElementById("noGif");
+
+    yesBtn.addEventListener("click", () => {
+      message.style.display = "block";
+      yesGif.style.display = "block";
+    });
+
+    noBtn.addEventListener("touchstart", moveButton);
+    noBtn.addEventListener("mouseover", moveButton);
+
+    function moveButton() {
+      noGif.style.display = "block";
+
+      const x = Math.floor(Math.random() * 250) - 120;
+      const y = Math.floor(Math.random() * 250) - 120;
+
+      noBtn.style.transform = `translate(${x}px, ${y}px)`;
+    }
+  </script>
+</body>
+</html>
