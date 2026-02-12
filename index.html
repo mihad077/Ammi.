@@ -10,10 +10,11 @@
       margin: 0;
       height: 100vh;
       font-family: Arial, sans-serif;
+      text-align: center;
       overflow: hidden;
     }
 
-    /* Main Background GIF */
+    /* Background GIF */
     body::before {
       content: "";
       position: absolute;
@@ -27,24 +28,27 @@
       content: "";
       position: absolute;
       inset: 0;
-      background: rgba(0,0,0,0.3);
+      background: rgba(0, 0, 0, 0.35);
       z-index: -1;
     }
 
-    /* Main Question Box */
+    /* Main Box */
     #mainBox {
       height: 100vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      text-align: center;
     }
 
     h1 {
       color: hotpink;
       font-size: 2.2rem;
       text-shadow: 2px 2px 10px black;
+    }
+
+    .buttons {
+      margin-top: 25px;
     }
 
     button {
@@ -54,6 +58,7 @@
       border: none;
       border-radius: 30px;
       cursor: pointer;
+      transition: 0.2s;
     }
 
     #yesBtn {
@@ -61,78 +66,84 @@
       color: white;
     }
 
+    #yesBtn:hover {
+      transform: scale(1.1);
+    }
+
     #noBtn {
       background: white;
       color: black;
     }
 
-    /* RESULT FULLSCREEN PHOTO */
+    /* RESULT SCREEN */
     #resultBox {
       display: none;
+      position: relative;
       height: 100vh;
       width: 100%;
-      position: relative;
     }
 
-    /* Fullscreen photo */
+    /* Fullscreen Photo */
     #resultBox img {
       width: 100%;
-      height: 100%;
+      height: 100vh;
       object-fit: cover;
-      position: absolute;
-      inset: 0;
-      z-index: -2;
     }
 
-    /* Dark overlay on photo */
-    #resultBox::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: rgba(0,0,0,0.45);
-      z-index: -1;
-    }
-
-    /* Bottom text */
+    /* Love Text Bottom */
     #loveText {
       position: absolute;
-      bottom: 30px;
+      bottom: 25px;
       width: 100%;
       text-align: center;
-      padding: 0 20px;
+      font-size: 16px;
       color: white;
-      font-size: 15px;
-      line-height: 1.5;
-      text-shadow: 2px 2px 8px black;
+      text-shadow: 2px 2px 10px black;
+      padding: 10px;
+    }
+
+    /* Floating Hearts */
+    .heart {
+      position: absolute;
+      bottom: -20px;
+      font-size: 22px;
+      animation: floatUp 5s linear infinite;
+      opacity: 0.9;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-100vh) scale(1.6);
+        opacity: 0;
+      }
     }
   </style>
 </head>
 
 <body>
 
-  <!-- Main Question -->
+  <!-- MAIN QUESTION -->
   <div id="mainBox">
     <h1>Ammi, will you be my Valentine? 💖</h1>
 
-    <div>
+    <div class="buttons">
       <button id="yesBtn">Yes 🥰</button>
       <button id="noBtn">No 😭</button>
     </div>
   </div>
 
-  <!-- Result Screen -->
+  <!-- YES RESULT SCREEN -->
   <div id="resultBox">
+    <img src="photo.jpg.jpg" alt="Love Photo">
 
-    <!-- Fullscreen Photo -->
-    <img src="photo.jpg.jpg" alt="My Love Photo">
-
-    <!-- Bottom Small Text -->
     <div id="loveText">
-      Ammi, you are my greatest blessing 💖<br>
-      May Allah always keep you happy, healthy, and safe 🤲<br>
-      I love you endlessly 🥰💍
+      I love you more than anything, Ammi 💍💖 <br>
+      You are my greatest blessing. May Allah always keep you happy and safe 🤲✨
     </div>
-
   </div>
 
   <script>
@@ -143,7 +154,25 @@
     yesBtn.addEventListener("click", () => {
       mainBox.style.display = "none";
       resultBox.style.display = "block";
+      startHearts();
     });
+
+    function startHearts() {
+      setInterval(() => {
+        const heart = document.createElement("div");
+        heart.classList.add("heart");
+        heart.innerHTML = "💖";
+
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.animationDuration = (3 + Math.random() * 3) + "s";
+
+        resultBox.appendChild(heart);
+
+        setTimeout(() => {
+          heart.remove();
+        }, 5000);
+      }, 400);
+    }
   </script>
 
 </body>
